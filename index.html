@@ -1,0 +1,1957 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>TAM’DA.com | Yatırımcı Sunumu</title>
+
+<style>
+:root{
+  --navy:#071426;
+  --navy2:#0b2948;
+  --blue:#2563eb;
+  --yellow:#ffc400;
+  --white:#ffffff;
+  --text:#101828;
+  --muted:#667085;
+  --line:rgba(255,255,255,.13);
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html,body{
+  margin:0;
+  width:100%;
+  height:100%;
+  overflow:hidden;
+  font-family:Inter,Arial,Helvetica,sans-serif;
+  background:#050d18;
+}
+
+body{
+  color:#fff;
+}
+
+button{
+  font:inherit;
+}
+
+/* =========================
+   SUNUM ANA YAPI
+========================= */
+
+.presentation{
+  position:relative;
+  width:100vw;
+  height:100dvh;
+  overflow:hidden;
+  background:#050d18;
+}
+
+.track{
+  display:flex;
+  width:100%;
+  height:100%;
+  transition:transform .65s cubic-bezier(.22,.82,.26,1);
+}
+
+.slide{
+  position:relative;
+  flex:0 0 100vw;
+  width:100vw;
+  height:100dvh;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 10% 12%,rgba(37,99,235,.22),transparent 28%),
+    radial-gradient(circle at 90% 10%,rgba(255,196,0,.09),transparent 24%),
+    linear-gradient(135deg,#071426,#0b2948);
+}
+
+.slide.light{
+  color:#111827;
+  background:
+    radial-gradient(circle at 85% 10%,rgba(37,99,235,.08),transparent 28%),
+    #f6f8fb;
+}
+
+.slide-inner{
+  width:min(1280px,92vw);
+  height:100%;
+  margin:auto;
+  padding:82px 20px 72px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  position:relative;
+  z-index:5;
+}
+
+.kicker{
+  color:var(--yellow);
+  font-size:12px;
+  letter-spacing:.17em;
+  font-weight:950;
+  margin-bottom:16px;
+}
+
+.light .kicker{
+  color:#b77900;
+}
+
+h1{
+  margin:0;
+  max-width:1050px;
+  font-size:clamp(42px,6vw,84px);
+  line-height:.98;
+  letter-spacing:-3.7px;
+}
+
+h2{
+  margin:0;
+  font-size:clamp(34px,4.5vw,65px);
+  line-height:1.03;
+  letter-spacing:-2.5px;
+}
+
+.yellow{
+  color:var(--yellow);
+}
+
+.lead{
+  max-width:890px;
+  margin-top:22px;
+  font-size:clamp(16px,1.55vw,23px);
+  line-height:1.65;
+  color:#ced9e6;
+}
+
+.light .lead{
+  color:#526174;
+}
+
+.small-note{
+  color:#91a3b7;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.light .small-note{
+  color:#7b8797;
+}
+
+/* =========================
+   HEADER
+========================= */
+
+.topbar{
+  position:absolute;
+  top:0;
+  left:0;
+  right:0;
+  z-index:50;
+  height:64px;
+  display:flex;
+  align-items:center;
+  padding:0 28px;
+  border-bottom:1px solid rgba(255,255,255,.08);
+  background:rgba(4,12,23,.42);
+  backdrop-filter:blur(14px);
+}
+
+.brand{
+  font-size:20px;
+  font-weight:950;
+  letter-spacing:-.7px;
+}
+
+.brand strong{
+  color:var(--yellow);
+}
+
+.topbar-right{
+  margin-left:auto;
+  display:flex;
+  align-items:center;
+  gap:12px;
+  color:#93a6bb;
+  font-size:10px;
+  font-weight:850;
+}
+
+/* =========================
+   NAV
+========================= */
+
+.nav-btn{
+  position:absolute;
+  z-index:100;
+  top:50%;
+  transform:translateY(-50%);
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  border:1px solid rgba(255,255,255,.16);
+  color:#fff;
+  background:rgba(7,20,38,.56);
+  backdrop-filter:blur(12px);
+  cursor:pointer;
+  font-size:25px;
+  box-shadow:0 10px 30px rgba(0,0,0,.18);
+}
+
+.nav-btn:hover{
+  background:rgba(37,99,235,.78);
+}
+
+.prev{
+  left:18px;
+}
+
+.next{
+  right:18px;
+}
+
+.progress-wrap{
+  position:absolute;
+  z-index:90;
+  left:50%;
+  bottom:24px;
+  transform:translateX(-50%);
+  width:min(680px,65vw);
+  display:flex;
+  align-items:center;
+  gap:14px;
+}
+
+.progress{
+  flex:1;
+  height:4px;
+  border-radius:20px;
+  background:rgba(255,255,255,.14);
+  overflow:hidden;
+}
+
+.progress-bar{
+  height:100%;
+  width:8.33%;
+  background:var(--yellow);
+  transition:.4s ease;
+}
+
+.counter{
+  min-width:56px;
+  text-align:right;
+  color:#b9c7d6;
+  font-size:11px;
+  font-weight:900;
+}
+
+/* =========================
+   GENEL KARTLAR
+========================= */
+
+.glass{
+  background:rgba(255,255,255,.075);
+  border:1px solid rgba(255,255,255,.13);
+  backdrop-filter:blur(18px);
+  border-radius:24px;
+  box-shadow:0 25px 60px rgba(0,0,0,.15);
+}
+
+.light .glass{
+  background:#fff;
+  border:1px solid #e1e7ef;
+  box-shadow:0 18px 45px rgba(8,20,38,.07);
+}
+
+.grid-2{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  margin-top:30px;
+}
+
+.grid-3{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+  margin-top:28px;
+}
+
+.grid-4{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-top:26px;
+}
+
+.card{
+  padding:22px;
+}
+
+.card h3{
+  margin:0 0 9px;
+  font-size:18px;
+}
+
+.card p{
+  margin:0;
+  color:#b9c7d6;
+  font-size:13px;
+  line-height:1.65;
+}
+
+.light .card p{
+  color:#667085;
+}
+
+.icon-box{
+  width:45px;
+  height:45px;
+  border-radius:14px;
+  display:grid;
+  place-items:center;
+  background:rgba(255,196,0,.12);
+  border:1px solid rgba(255,196,0,.25);
+  color:#ffc400;
+  margin-bottom:15px;
+  font-size:21px;
+}
+
+/* =========================
+   1 — İKİ İNSAN
+========================= */
+
+.people-scene{
+  margin-top:35px;
+  display:grid;
+  grid-template-columns:1fr 170px 1fr;
+  align-items:center;
+  gap:15px;
+}
+
+.person-card{
+  min-height:260px;
+  padding:25px;
+  position:relative;
+  overflow:hidden;
+}
+
+.person-tag{
+  color:#ffc400;
+  font-size:10px;
+  font-weight:950;
+  letter-spacing:.14em;
+}
+
+.person-card h3{
+  font-size:25px;
+  margin:10px 0 12px;
+}
+
+.person-card ul{
+  list-style:none;
+  padding:0;
+  margin:17px 0 0;
+  display:grid;
+  gap:10px;
+}
+
+.person-card li{
+  font-size:13px;
+  color:#cad6e3;
+}
+
+.person-card li:before{
+  content:"✓";
+  color:#ffc400;
+  margin-right:9px;
+  font-weight:950;
+}
+
+.distance{
+  text-align:center;
+}
+
+.distance-line{
+  width:100%;
+  height:2px;
+  background:linear-gradient(90deg,transparent,#ffc400,transparent);
+  margin:13px 0;
+}
+
+.distance strong{
+  color:#ffc400;
+  font-size:11px;
+  letter-spacing:.08em;
+}
+
+/* =========================
+   2 — MALİYET
+========================= */
+
+.cost-flow{
+  margin-top:34px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:10px;
+}
+
+.cost-step{
+  flex:1;
+  min-height:160px;
+  padding:20px;
+  border-radius:20px;
+  background:rgba(255,255,255,.065);
+  border:1px solid rgba(255,255,255,.10);
+}
+
+.cost-step b{
+  display:block;
+  font-size:17px;
+  margin:12px 0 6px;
+}
+
+.cost-step span{
+  color:#aebed0;
+  font-size:12px;
+  line-height:1.55;
+}
+
+.arrow{
+  color:#ffc400;
+  font-size:24px;
+  flex:0 0 auto;
+}
+
+/* =========================
+   3 — TALEP VERİSİ
+========================= */
+
+.request-box{
+  margin-top:35px;
+  padding:30px;
+  display:grid;
+  grid-template-columns:1fr .9fr;
+  gap:25px;
+}
+
+.chips{
+  display:flex;
+  gap:9px;
+  flex-wrap:wrap;
+  margin-top:18px;
+}
+
+.chip{
+  border-radius:999px;
+  padding:9px 13px;
+  border:1px solid rgba(255,255,255,.15);
+  background:rgba(255,255,255,.07);
+  color:#d8e2ee;
+  font-size:11px;
+  font-weight:850;
+}
+
+.match-score{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  border-left:1px solid rgba(255,255,255,.12);
+}
+
+.score{
+  font-size:72px;
+  font-weight:950;
+  color:#ffc400;
+  letter-spacing:-4px;
+}
+
+.score-label{
+  color:#91a3b7;
+  font-size:11px;
+  text-align:center;
+}
+
+/* =========================
+   4 — MODEL
+========================= */
+
+.model-line{
+  margin-top:42px;
+  display:grid;
+  grid-template-columns:1fr 100px 1fr 100px 1fr;
+  align-items:center;
+}
+
+.model-box{
+  min-height:190px;
+  padding:25px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.model-number{
+  color:#ffc400;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.12em;
+}
+
+.model-box h3{
+  font-size:21px;
+  margin:9px 0;
+}
+
+.model-box p{
+  color:#afbecd;
+  line-height:1.6;
+  font-size:12px;
+}
+
+.model-arrow{
+  text-align:center;
+  font-size:32px;
+  color:#ffc400;
+}
+
+/* =========================
+   5 — PROTOTİP
+========================= */
+
+.browser{
+  margin-top:28px;
+  background:#fff;
+  color:#111827;
+  border-radius:24px;
+  overflow:hidden;
+  box-shadow:0 30px 80px rgba(0,0,0,.28);
+}
+
+.browser-top{
+  background:#edf1f6;
+  height:42px;
+  display:flex;
+  align-items:center;
+  gap:7px;
+  padding:0 15px;
+}
+
+.dot{
+  width:9px;
+  height:9px;
+  border-radius:50%;
+  background:#c3cad4;
+}
+
+.browser-body{
+  display:grid;
+  grid-template-columns:1.05fr .95fr;
+  min-height:315px;
+}
+
+.browser-left{
+  background:linear-gradient(145deg,#071426,#0b2948);
+  color:white;
+  padding:30px;
+}
+
+.mock-title{
+  font-size:31px;
+  line-height:1.05;
+  font-weight:950;
+  letter-spacing:-1.5px;
+}
+
+.browser-left p{
+  color:#c7d4e1;
+  font-size:12px;
+  line-height:1.6;
+}
+
+.fake-button{
+  display:inline-block;
+  margin-top:16px;
+  padding:11px 15px;
+  background:#ffc400;
+  color:#111827;
+  border-radius:10px;
+  font-size:10px;
+  font-weight:950;
+}
+
+.browser-right{
+  padding:22px;
+  background:#f7f9fc;
+}
+
+.mock-request{
+  background:white;
+  border:1px solid #e1e7ef;
+  border-radius:15px;
+  padding:14px;
+  margin-bottom:10px;
+}
+
+.mock-request b{
+  font-size:12px;
+}
+
+.mock-request small{
+  display:block;
+  margin-top:5px;
+  color:#667085;
+}
+
+/* =========================
+   6 — PAZAR
+========================= */
+
+.stat-grid{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:22px;
+  margin-top:34px;
+}
+
+.stat{
+  min-height:240px;
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.stat-number{
+  color:#ffc400;
+  font-size:clamp(50px,6vw,85px);
+  font-weight:950;
+  letter-spacing:-4px;
+  line-height:.95;
+}
+
+.stat-label{
+  margin-top:12px;
+  font-size:19px;
+  font-weight:900;
+}
+
+.stat-source{
+  color:#8fa1b3;
+  margin-top:9px;
+  font-size:10px;
+}
+
+/* =========================
+   7 — FARK
+========================= */
+
+.compare{
+  margin-top:32px;
+  display:grid;
+  grid-template-columns:1fr 80px 1fr;
+  gap:15px;
+  align-items:stretch;
+}
+
+.compare-card{
+  padding:28px;
+  min-height:300px;
+}
+
+.compare-card.old{
+  background:#fff;
+  border:1px solid #e3e8ef;
+  border-radius:24px;
+}
+
+.compare-card.new{
+  color:white;
+  background:linear-gradient(145deg,#071426,#0d3158);
+  border-radius:24px;
+  box-shadow:0 25px 50px rgba(8,20,38,.16);
+}
+
+.compare-title{
+  font-size:12px;
+  font-weight:950;
+  letter-spacing:.13em;
+  margin-bottom:20px;
+}
+
+.old .compare-title{
+  color:#667085;
+}
+
+.new .compare-title{
+  color:#ffc400;
+}
+
+.compare-big{
+  font-size:25px;
+  line-height:1.25;
+  font-weight:950;
+}
+
+.compare-list{
+  margin-top:22px;
+  display:grid;
+  gap:11px;
+  font-size:13px;
+}
+
+.old .compare-list{
+  color:#667085;
+}
+
+.new .compare-list{
+  color:#cbd7e3;
+}
+
+.vs{
+  display:grid;
+  place-items:center;
+  font-weight:950;
+  color:#b77900;
+}
+
+/* =========================
+   8 — GERİ GELME
+========================= */
+
+.loop{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.loop-card{
+  padding:28px;
+  min-height:280px;
+}
+
+.loop-card h3{
+  font-size:26px;
+  margin:7px 0 14px;
+}
+
+.loop-item{
+  margin-top:10px;
+  padding:11px 12px;
+  border-radius:11px;
+  background:rgba(255,255,255,.07);
+  border:1px solid rgba(255,255,255,.09);
+  color:#c7d4e1;
+  font-size:12px;
+}
+
+.loop-highlight{
+  margin-top:26px;
+  padding:16px 18px;
+  border-radius:14px;
+  background:#ffc400;
+  color:#111827;
+  font-size:16px;
+  font-weight:950;
+}
+
+/* =========================
+   9 — GELİR
+========================= */
+
+.revenue-grid{
+  margin-top:34px;
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:14px;
+}
+
+.revenue-card{
+  padding:22px;
+  min-height:190px;
+}
+
+.revenue-card b{
+  display:block;
+  margin-top:11px;
+  font-size:15px;
+}
+
+.revenue-card p{
+  color:#667085;
+  font-size:11.5px;
+  line-height:1.55;
+}
+
+.test-pill{
+  display:inline-flex;
+  padding:7px 10px;
+  border-radius:999px;
+  color:#92400e;
+  background:#fff3c4;
+  font-size:9px;
+  font-weight:950;
+}
+
+/* =========================
+   10 — KURUCU
+========================= */
+
+.founder-layout{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:36px;
+  align-items:center;
+}
+
+.founder-visual{
+  min-height:500px;
+  border-radius:28px;
+  overflow:hidden;
+  background:
+    radial-gradient(circle at 50% 20%,rgba(255,196,0,.18),transparent 30%),
+    linear-gradient(145deg,#0b2b4c,#061426);
+  display:grid;
+  place-items:center;
+  position:relative;
+}
+
+.founder-initial{
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  border:2px solid rgba(255,196,0,.55);
+  display:grid;
+  place-items:center;
+  font-size:73px;
+  font-weight:950;
+  color:#ffc400;
+  background:rgba(255,255,255,.05);
+}
+
+.founder-caption{
+  position:absolute;
+  bottom:35px;
+  text-align:center;
+}
+
+.founder-caption b{
+  display:block;
+  font-size:20px;
+}
+
+.founder-caption small{
+  color:#9fb1c4;
+}
+
+.founder-story{
+  display:grid;
+  gap:13px;
+  margin-top:26px;
+}
+
+.story-line{
+  border-left:3px solid #ffc400;
+  padding:7px 0 7px 15px;
+  color:#ccd8e4;
+  font-size:14px;
+  line-height:1.6;
+}
+
+/* =========================
+   11 — YATIRIM
+========================= */
+
+.invest-layout{
+  display:grid;
+  grid-template-columns:.75fr 1.25fr;
+  gap:28px;
+  margin-top:34px;
+}
+
+.ask-box{
+  padding:30px;
+  min-height:350px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+}
+
+.ask-title{
+  color:#ffc400;
+  font-size:11px;
+  font-weight:950;
+  letter-spacing:.14em;
+}
+
+.ask-number{
+  font-size:clamp(55px,6vw,87px);
+  font-weight:950;
+  letter-spacing:-4px;
+  line-height:.95;
+  margin-top:12px;
+}
+
+.ask-note{
+  margin-top:14px;
+  color:#9fb0c2;
+  font-size:11px;
+}
+
+.milestones{
+  display:grid;
+  gap:12px;
+}
+
+.milestone{
+  padding:18px 20px;
+  background:white;
+  border:1px solid #e2e7ee;
+  border-radius:16px;
+  display:grid;
+  grid-template-columns:80px 1fr;
+  gap:15px;
+  align-items:center;
+}
+
+.month{
+  color:#b77900;
+  font-size:11px;
+  font-weight:950;
+}
+
+.milestone b{
+  display:block;
+  font-size:14px;
+}
+
+.milestone span{
+  color:#667085;
+  font-size:11px;
+  line-height:1.5;
+}
+
+/* =========================
+   12 — FİNAL
+========================= */
+
+.final-slide{
+  text-align:center;
+}
+
+.final-slide .slide-inner{
+  align-items:center;
+}
+
+.final-main{
+  max-width:1000px;
+  font-size:clamp(43px,6vw,82px);
+  line-height:1.05;
+  font-weight:950;
+  letter-spacing:-3.5px;
+}
+
+.final-brand{
+  margin-top:45px;
+  font-size:clamp(30px,4vw,50px);
+  font-weight:950;
+}
+
+.final-brand strong{
+  color:#ffc400;
+}
+
+.final-slogan{
+  margin-top:12px;
+  color:#aebed0;
+  font-size:18px;
+  font-weight:750;
+}
+
+/* =========================
+   MOBİL
+========================= */
+
+@media(max-width:850px){
+
+  .slide{
+    overflow-y:auto;
+  }
+
+  .slide-inner{
+    height:auto;
+    min-height:100dvh;
+    padding:85px 18px 90px;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .stat-grid,
+  .loop,
+  .founder-layout,
+  .invest-layout,
+  .browser-body{
+    grid-template-columns:1fr;
+  }
+
+  .people-scene{
+    grid-template-columns:1fr;
+  }
+
+  .distance{
+    padding:10px;
+  }
+
+  .cost-flow{
+    display:grid;
+    grid-template-columns:1fr;
+  }
+
+  .arrow{
+    transform:rotate(90deg);
+    text-align:center;
+  }
+
+  .model-line{
+    grid-template-columns:1fr;
+    gap:10px;
+  }
+
+  .model-arrow{
+    transform:rotate(90deg);
+  }
+
+  .compare{
+    grid-template-columns:1fr;
+  }
+
+  .vs{
+    padding:10px;
+  }
+
+  .revenue-grid{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .request-box{
+    grid-template-columns:1fr;
+  }
+
+  .match-score{
+    border-left:0;
+    border-top:1px solid rgba(255,255,255,.12);
+    padding-top:20px;
+  }
+
+  .nav-btn{
+    width:41px;
+    height:41px;
+    font-size:20px;
+  }
+
+  .prev{
+    left:7px;
+  }
+
+  .next{
+    right:7px;
+  }
+
+  .progress-wrap{
+    width:70vw;
+  }
+
+  .topbar{
+    padding:0 15px;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="presentation">
+
+  <div class="topbar">
+    <div class="brand"><strong>TAM’DA</strong>.com</div>
+    <div class="topbar-right">
+      YATIRIMCI SUNUMU • 2026
+    </div>
+  </div>
+
+  <div class="track" id="track">
+
+    <!-- 1 -->
+    <section class="slide">
+      <div class="slide-inner">
+
+        <div class="kicker">01 — PROBLEMİN BAŞLADIĞI YER</div>
+
+        <h1>
+          Aynı işlem için hazırlar.<br>
+          <span class="yellow">Ama birbirlerinden haberleri yok.</span>
+        </h1>
+
+        <p class="lead">
+          Bir insan aradığı dairenin bölgesini, oda sayısını ve bütçesini biliyor.
+          Başka bir insanın elinde ise bu özelliklere yakın bir daire var.
+          Bugün biri arıyor, diğeri bekliyor.
+        </p>
+
+        <div class="people-scene">
+
+          <div class="person-card glass">
+            <div class="person-tag">ALICI</div>
+            <h3>“3+1 bir daire arıyorum.”</h3>
+            <ul>
+              <li>İstanbul / Başakşehir</li>
+              <li>120 m² ve üzeri</li>
+              <li>6.000.000 TL bütçe</li>
+            </ul>
+          </div>
+
+          <div class="distance">
+            <strong>ARADAKİ MESAFE</strong>
+            <div class="distance-line"></div>
+            <div style="font-size:38px">?</div>
+          </div>
+
+          <div class="person-card glass">
+            <div class="person-tag">SATICI</div>
+            <h3>“Benim uygun bir dairem var.”</h3>
+            <ul>
+              <li>Başakşehir’e yakın</li>
+              <li>3+1 • 125 m²</li>
+              <li>Satışa hazır</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 2 -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <div class="kicker">02 — BU MESAFENİN BİR MALİYETİ VAR</div>
+
+        <h2>
+          Uyumsuzluğu geç öğrenmek,<br>
+          <span class="yellow">iki tarafın da zamanını tüketiyor.</span>
+        </h2>
+
+        <p class="lead">
+          Bütçe, bölge veya özellik uyuşmazlığı görüşmenin ilerleyen aşamasında
+          ortaya çıktığında süreç gereksiz yere uzuyor.
+        </p>
+
+        <div class="cost-flow">
+
+          <div class="cost-step">
+            <div class="icon-box">⌕</div>
+            <b>İlan arama</b>
+            <span>Yüzlerce seçenek arasından uygun olanı ayıklama.</span>
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="cost-step">
+            <div class="icon-box">☎</div>
+            <b>Telefon görüşmeleri</b>
+            <span>Uygunluk daha görüşmenin başında net olmayabiliyor.</span>
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="cost-step">
+            <div class="icon-box">⌂</div>
+            <b>Yer görme</b>
+            <span>Kriter uyuşmazlığı bazen bu aşamada ortaya çıkıyor.</span>
+          </div>
+
+          <div class="arrow">→</div>
+
+          <div class="cost-step">
+            <div class="icon-box">⌛</div>
+            <b>Zaman kaybı</b>
+            <span>Alıcı yeniden aramaya, satıcı yeniden beklemeye dönüyor.</span>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 3 -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <div class="kicker">03 — TALEP, ASLINDA DEĞERLİ BİR VERİ</div>
+
+        <h2>
+          Alıcının bildiği bilgi,<br>
+          <span class="yellow">satıcının kararını değiştirebilir.</span>
+        </h2>
+
+        <div class="request-box glass">
+
+          <div>
+
+            <div style="font-size:12px;color:#8fa8c2;font-weight:850">
+              GERÇEK BİR İHTİYAÇ
+            </div>
+
+            <div style="font-size:29px;font-weight:950;margin-top:8px">
+              “Çankaya’da 3+1 daire arıyorum.”
+            </div>
+
+            <div class="chips">
+              <span class="chip">Ankara / Çankaya</span>
+              <span class="chip">3+1</span>
+              <span class="chip">120–160 m²</span>
+              <span class="chip">6 milyon TL’ye kadar</span>
+              <span class="chip">Site tercih</span>
+            </div>
+
+            <p style="color:#bdcad8;line-height:1.7;font-size:13px;margin-top:22px">
+              Satıcı, elindeki seçeneğin bu ihtiyaca ne kadar uyduğunu
+              ilk temastan önce değerlendirebilir.
+            </p>
+
+          </div>
+
+          <div class="match-score">
+            <div class="score">%82</div>
+            <div class="score-label">
+              Örnek kriter uyumu<br>
+              <strong style="color:#fff">Satış garantisi değil, daha ilgili bir başlangıç.</strong>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 4 -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <div class="kicker">04 — MODELİ TALEBİN ETRAFINDA KURUYORUZ</div>
+
+        <h2>
+          Aramayı tersine çeviriyoruz.
+        </h2>
+
+        <p class="lead">
+          Merkezde ilan değil, ne istediğini açıkça ifade eden insan var.
+        </p>
+
+        <div class="model-line">
+
+          <div class="model-box glass">
+            <div class="model-number">01</div>
+            <h3>İhtiyacını yayınla</h3>
+            <p>
+              Bölge, bütçe ve kriterlerini tek bir talepte topla.
+            </p>
+          </div>
+
+          <div class="model-arrow">→</div>
+
+          <div class="model-box glass">
+            <div class="model-number">02</div>
+            <h3>Uygun seçenek talebi görsün</h3>
+            <p>
+              Bireysel veya profesyonel kullanıcı talebi değerlendirir.
+            </p>
+          </div>
+
+          <div class="model-arrow">→</div>
+
+          <div class="model-box glass">
+            <div class="model-number">03</div>
+            <h3>Uygunsa iletişim başlasın</h3>
+            <p>
+              Görüşme en başından belirli kriterler üzerinden ilerler.
+            </p>
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 5 -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <div class="kicker">05 — FİKİR EKRANA DÖNÜŞTÜ</div>
+
+        <h2>
+          Bu yalnızca bir fikir değil.<br>
+          <span class="yellow">Bugün gösterebildiğimiz bir prototip var.</span>
+        </h2>
+
+        <div class="browser">
+
+          <div class="browser-top">
+            <span class="dot"></span>
+            <span class="dot"></span>
+            <span class="dot"></span>
+          </div>
+
+          <div class="browser-body">
+
+            <div class="browser-left">
+
+              <div style="color:#ffc400;font-weight:950;font-size:11px">
+                TAM’DA.com
+              </div>
+
+              <div class="mock-title">
+                Artık aramak yok,<br>
+                <span style="color:#ffc400">aranmak var.</span>
+              </div>
+
+              <p>
+                Ne aradığını söyle, talebini yayınla.
+                Uygun seçeneği olanlar seni bulsun.
+              </p>
+
+              <span class="fake-button">
+                + Talebimi Oluştur
+              </span>
+
+            </div>
+
+            <div class="browser-right">
+
+              <div style="font-size:12px;font-weight:950;margin-bottom:12px">
+                Güncel Talepler
+              </div>
+
+              <div class="mock-request">
+                <b>Çatalca’da tek tapu arazi aranıyor</b>
+                <small>1.000–2.000 m² • Belirli bütçe aralığı</small>
+              </div>
+
+              <div class="mock-request">
+                <b>Başakşehir’de 3+1 satılık daire aranıyor</b>
+                <small>120 m²+ • Site içinde</small>
+              </div>
+
+              <div class="mock-request">
+                <b>2022 ve üzeri otomatik araç aranıyor</b>
+                <small>Belirli kilometre ve bütçe kriteri</small>
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 6 -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <div class="kicker">06 — NEDEN ŞİMDİ?</div>
+
+        <h2>
+          Piyasa küçük değil.<br>
+          <span class="yellow">İşlem hacmi zaten milyonlarla ölçülüyor.</span>
+        </h2>
+
+        <div class="stat-grid">
+
+          <div class="stat glass">
+            <div class="stat-number">1,69 M</div>
+            <div class="stat-label">2025 Türkiye konut satışı</div>
+            <div class="stat-source">
+              TÜİK • 1.688.910 konut • yıllık %14,3 artış
+            </div>
+          </div>
+
+          <div class="stat glass">
+            <div class="stat-number">11,21 M</div>
+            <div class="stat-label">2025 motorlu taşıt devri</div>
+            <div class="stat-source">
+              TÜİK • noterler aracılığıyla gerçekleşen taşıt devirleri
+            </div>
+          </div>
+
+        </div>
+
+        <p class="lead" style="max-width:1050px">
+          Sorun “piyasa yok” değil. TAM’DA.com’un hedeflediği alan,
+          milyonlarca işlemin başlangıcındaki <strong style="color:#fff">
+          doğru talep – doğru seçenek buluşmasını</strong> daha verimli hâle getirmek.
+        </p>
+
+      </div>
+    </section>
+
+
+    <!-- 7 -->
+    <section class="slide light">
+
+      <div class="slide-inner">
+
+        <div class="kicker">07 — NEDEN FARKLI?</div>
+
+        <h2>
+          Klasik model arzı gösterir.<br>
+          <span style="color:#b77900">Biz talebi de görünür hâle getiriyoruz.</span>
+        </h2>
+
+        <div class="compare">
+
+          <div class="compare-card old">
+
+            <div class="compare-title">
+              KLASİK İLAN MODELİ
+            </div>
+
+            <div class="compare-big">
+              Satıcı ilan verir.<br>
+              Alıcı aramaya başlar.
+            </div>
+
+            <div class="compare-list">
+              <div>• Çok sayıda ilan</div>
+              <div>• Arama ve filtreleme yükü alıcıda</div>
+              <div>• Gerçek talep satıcı için çoğu zaman görünmez</div>
+            </div>
+
+          </div>
+
+          <div class="vs">
+            VS
+          </div>
+
+          <div class="compare-card new">
+
+            <div class="compare-title">
+              TAM’DA MODELİ
+            </div>
+
+            <div class="compare-big">
+              Alıcı ihtiyacını yayınlar.<br>
+              Uygun seçenek talebe gelir.
+            </div>
+
+            <div class="compare-list">
+              <div>• Talep görünür</div>
+              <div>• Satıcı gerçek ihtiyacı görebilir</div>
+              <div>• Görüşme kriterler üzerinden başlar</div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 8 -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <div class="kicker">08 — KULLANICI NEDEN GERİ GELSİN?</div>
+
+        <h2>
+          Yeni ilan değil,<br>
+          <span class="yellow">yeni talep kullanıcıyı geri getirir.</span>
+        </h2>
+
+        <div class="loop">
+
+          <div class="loop-card glass">
+            <div class="person-tag">BİREYSEL KULLANICI</div>
+            <h3>İhtiyacını takip eder.</h3>
+
+            <div class="loop-item">
+              Talebime yeni karşılık geldi mi?
+            </div>
+
+            <div class="loop-item">
+              Yeni bir seçenek kriterlerime uyuyor mu?
+            </div>
+
+            <div class="loop-item">
+              Taleplerimi tek yerde yönetebilir miyim?
+            </div>
+          </div>
+
+          <div class="loop-card glass">
+            <div class="person-tag">PROFESYONEL KULLANICI</div>
+            <h3>Bölgesindeki talebi takip eder.</h3>
+
+            <div class="loop-item">
+              Hizmet verdiğim bölgede yeni talep var mı?
+            </div>
+
+            <div class="loop-item">
+              Portföyüme uygun ihtiyaç yayınlandı mı?
+            </div>
+
+            <div class="loop-item">
+              Gerçek talebe daha erken ulaşabilir miyim?
+            </div>
+          </div>
+
+        </div>
+
+        <div class="loop-highlight">
+          Talep yenilendikçe platformun tekrar kullanım nedeni oluşur.
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 9 -->
+    <section class="slide light">
+
+      <div class="slide-inner">
+
+        <div class="kicker">09 — GELİR MODELİ NASIL DOĞRULANACAK?</div>
+
+        <h2>
+          Önce kullanım değerini kanıtla.<br>
+          <span style="color:#b77900">Sonra ödeme isteğini ölç.</span>
+        </h2>
+
+        <div class="revenue-grid">
+
+          <div class="revenue-card glass">
+            <div class="icon-box">♙</div>
+            <b>Profesyonel üyelik</b>
+            <p>
+              Profesyonellere yönelik ek iş araçları ve hesap özellikleri.
+            </p>
+          </div>
+
+          <div class="revenue-card glass">
+            <div class="icon-box">⌕</div>
+            <b>Gelişmiş talep filtreleri</b>
+            <p>
+              Bölge ve kriter bazlı daha gelişmiş talep takip araçları.
+            </p>
+          </div>
+
+          <div class="revenue-card glass">
+            <div class="icon-box">◎</div>
+            <b>Bölgesel talep erişimi</b>
+            <p>
+              Profesyoneller için ilgili pazar hareketini daha yakından izleme.
+            </p>
+          </div>
+
+          <div class="revenue-card glass">
+            <div class="icon-box">↗</div>
+            <b>Profesyonel araçlar</b>
+            <p>
+              Talep yönetimi, takip ve iş akışını hızlandıran özellikler.
+            </p>
+          </div>
+
+        </div>
+
+        <div style="margin-top:24px">
+          <span class="test-pill">
+            GELİR MODELİ PİLOT KULLANICI DAVRANIŞIYLA DOĞRULANACAK
+          </span>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 10 -->
+    <section class="slide">
+
+      <div class="slide-inner">
+
+        <div class="founder-layout">
+
+          <div class="founder-visual">
+
+            <div class="founder-initial">
+              YA
+            </div>
+
+            <div class="founder-caption">
+              <b>Yusuf Akmercan</b>
+              <small>Kurucu • TAM’DA.com</small>
+            </div>
+
+          </div>
+
+          <div>
+
+            <div class="kicker">10 — NEDEN BEN?</div>
+
+            <h2>
+              Problemle masada değil,<br>
+              <span class="yellow">sahada karşılaştım.</span>
+            </h2>
+
+            <p class="lead">
+              Gayrimenkul işiyle uğraşırken alıcıyla satıcının beklentilerini
+              netleştirmek için ne kadar zaman harcandığını bizzat gördüm.
+            </p>
+
+            <div class="founder-story">
+
+              <div class="story-line">
+                Alıcının ne istediğini anlamak için yapılan tekrar tekrar görüşmeler.
+              </div>
+
+              <div class="story-line">
+                Satıcının gerçekten ilgili müşteriye ulaşmak için beklemesi.
+              </div>
+
+              <div class="story-line">
+                Sahada gördüğüm bu problemi, bugün çalışan bir prototipe dönüştürdüm.
+              </div>
+
+              <div class="story-line">
+                Bir sonraki hedef: gerçek kullanıcı davranışıyla sistemi doğrulamak.
+              </div>
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 11 -->
+    <section class="slide light">
+
+      <div class="slide-inner">
+
+        <div class="kicker">11 — YATIRIM NEYİ DEĞİŞTİRECEK?</div>
+
+        <h2>
+          Kaynak sadece siteyi büyütmek için değil,<br>
+          <span style="color:#b77900">iş modelini sahada kanıtlamak için kullanılacak.</span>
+        </h2>
+
+        <div class="invest-layout">
+
+          <div class="ask-box" style="
+            background:linear-gradient(145deg,#071426,#0d3158);
+            color:white;
+            border-radius:25px;
+          ">
+
+            <div class="ask-title">
+              PİLOT YATIRIM HEDEFİ
+            </div>
+
+            <div class="ask-number">
+              3.000.000 TL
+            </div>
+
+            <div class="ask-note">
+              İlk yatırım görüşmeleri için önerilen başlangıç seviyesi.
+              Değerleme ve yatırım yapısı görüşmeye açıktır.
+            </div>
+
+          </div>
+
+          <div class="milestones">
+
+            <div class="milestone">
+              <div class="month">0–3 AY</div>
+              <div>
+                <b>Ürünü sağlamlaştır</b>
+                <span>
+                  Teknik geliştirme, mobil deneyim, güvenlik, hukuk ve temel operasyon.
+                </span>
+              </div>
+            </div>
+
+            <div class="milestone">
+              <div class="month">3–6 AY</div>
+              <div>
+                <b>Belirli bölgede pilot kullanım</b>
+                <span>
+                  Gerçek kullanıcı edinimi, gerçek talepler ve eşleşme davranışlarının ölçümü.
+                </span>
+              </div>
+            </div>
+
+            <div class="milestone">
+              <div class="month">6–9 AY</div>
+              <div>
+                <b>Tekrar kullanım ve ücret isteğini ölç</b>
+                <span>
+                  Profesyonel kullanıcıların hangi araçlar için ödeme yapmaya hazır olduğunu doğrula.
+                </span>
+              </div>
+            </div>
+
+            <div class="milestone">
+              <div class="month">9. AY</div>
+              <div>
+                <b>Ölçekleme kararı</b>
+                <span>
+                  Talep sayısı, uygun yanıt oranı, tekrar kullanım ve gelir sinyallerine göre büyüme planı.
+                </span>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- 12 -->
+    <section class="slide final-slide">
+
+      <div class="slide-inner">
+
+        <div class="kicker">12 — KURMAK İSTEDİĞİMİZ DEĞER</div>
+
+        <div class="final-main">
+
+          Doğru insan var.<br>
+          Doğru seçenek var.<br><br>
+
+          <span class="yellow">
+            Eksik olan, birbirlerini daha erken bulmaları.
+          </span>
+
+        </div>
+
+        <div class="final-brand">
+          <strong>TAM’DA</strong>.com
+        </div>
+
+        <div class="final-slogan">
+          Artık aramak yok, aranmak var.
+        </div>
+
+      </div>
+    </section>
+
+  </div>
+
+
+  <button class="nav-btn prev" id="prevBtn" aria-label="Önceki sayfa">
+    ‹
+  </button>
+
+  <button class="nav-btn next" id="nextBtn" aria-label="Sonraki sayfa">
+    ›
+  </button>
+
+
+  <div class="progress-wrap">
+
+    <div class="progress">
+      <div class="progress-bar" id="progressBar"></div>
+    </div>
+
+    <div class="counter" id="counter">
+      01 / 12
+    </div>
+
+  </div>
+
+</div>
+
+
+<script>
+const track = document.getElementById("track");
+const slides = [...document.querySelectorAll(".slide")];
+const prevBtn = document.getElementById("prevBtn");
+const nextBtn = document.getElementById("nextBtn");
+const counter = document.getElementById("counter");
+const progressBar = document.getElementById("progressBar");
+
+let current = 0;
+let touchStartX = 0;
+let touchEndX = 0;
+
+function goToSlide(index){
+
+  if(index < 0){
+    index = 0;
+  }
+
+  if(index >= slides.length){
+    index = slides.length - 1;
+  }
+
+  current = index;
+
+  track.style.transform =
+    `translateX(-${current * 100}vw)`;
+
+  counter.textContent =
+    `${String(current + 1).padStart(2,"0")} / ${String(slides.length).padStart(2,"0")}`;
+
+  progressBar.style.width =
+    `${((current + 1) / slides.length) * 100}%`;
+
+  prevBtn.style.opacity =
+    current === 0 ? ".30" : "1";
+
+  nextBtn.innerHTML =
+    current === slides.length - 1 ? "↺" : "›";
+}
+
+
+function nextSlide(){
+
+  if(current === slides.length - 1){
+    goToSlide(0);
+  }else{
+    goToSlide(current + 1);
+  }
+
+}
+
+
+function prevSlide(){
+  goToSlide(current - 1);
+}
+
+
+nextBtn.addEventListener("click",nextSlide);
+prevBtn.addEventListener("click",prevSlide);
+
+
+/* KLAVYE */
+document.addEventListener("keydown",function(e){
+
+  if(
+    e.key === "ArrowRight" ||
+    e.key === "PageDown" ||
+    e.key === " "
+  ){
+    e.preventDefault();
+    nextSlide();
+  }
+
+  if(
+    e.key === "ArrowLeft" ||
+    e.key === "PageUp"
+  ){
+    e.preventDefault();
+    prevSlide();
+  }
+
+  if(e.key === "Home"){
+    goToSlide(0);
+  }
+
+  if(e.key === "End"){
+    goToSlide(slides.length - 1);
+  }
+
+  /* F = tam ekran */
+  if(e.key.toLowerCase() === "f"){
+
+    if(!document.fullscreenElement){
+      document.documentElement.requestFullscreen?.();
+    }else{
+      document.exitFullscreen?.();
+    }
+
+  }
+
+});
+
+
+/* TELEFONDA SAĞA / SOLA KAYDIR */
+document.addEventListener(
+  "touchstart",
+  function(e){
+    touchStartX = e.changedTouches[0].screenX;
+  },
+  {passive:true}
+);
+
+document.addEventListener(
+  "touchend",
+  function(e){
+
+    touchEndX = e.changedTouches[0].screenX;
+
+    const diff = touchStartX - touchEndX;
+
+    if(Math.abs(diff) < 50){
+      return;
+    }
+
+    if(diff > 0){
+      nextSlide();
+    }else{
+      prevSlide();
+    }
+
+  },
+  {passive:true}
+);
+
+
+/* SUNUMUN BOŞ YERİNE TIKLAYINCA İLERLE */
+document.addEventListener("click",function(e){
+
+  if(
+    e.target.closest(".nav-btn") ||
+    e.target.closest("button") ||
+    e.target.closest("a")
+  ){
+    return;
+  }
+
+  if(e.clientX > window.innerWidth * .72){
+    nextSlide();
+  }
+
+});
+
+
+goToSlide(0);
+</script>
+
+</body>
+</html>
